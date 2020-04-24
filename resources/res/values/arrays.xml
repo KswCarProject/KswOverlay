@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="bc_home_netg6_als_6208_item_text_array">
+        <item>Navigation</item>
+        <item>Movies</item>
+        <item>Music</item>
+        <item>Phone</item>
+        <item>COMAND</item>
+        <item>Dashboard</item>
+        <item>CarPlay</item>
+        <item>Files</item>
+        <item>Dashcam</item>
+        <item>Settings</item>
+    </array>
+    <array name="bc_item_text_array">
+        <item>Navigation</item>
+        <item>Music</item>
+        <item>Phone</item>
+        <item>COMAND</item>
+        <item>Settings</item>
+        <item>Movies</item>
+        <item>Files</item>
+        <item>CarPlay</item>
+        <item>Dashboard</item>
+        <item>Dashcam</item>
+    </array>
+    <array name="benz_mbux_home_item_array">
+        <item>Navigation</item>
+        <item>Music</item>
+        <item>Phone</item>
+        <item>COMAND</item>
+        <item>Settings</item>
+        <item>Movies</item>
+        <item>Apps</item>
+        <item>CarPlay</item>
+        <item>Dashboard</item>
+        <item>Dashcam</item>
+    </array>
+</resources>

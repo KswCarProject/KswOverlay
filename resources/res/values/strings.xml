@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="bc_apps_btn_text">Apps</string>
+	
+    <string name="dialog_update10">Are you sure you would like to choose this model?</string>
+    <string name="dialog_update11">Are you sure you would like to choose this screen type?</string>
+    <string name="dialog_update2">Upgrade file not found</string>
+
+    <string name="dialog_update5">Are you sure you want to import this configuration file?</string>
+    <string name="dialog_update6">Are you sure you want to upgrade the MCU?</string>
+	<string name="update_factory_file">Are you sure you want to update the configuration file?</string>
+    <string name="update_mcu_file">Are you sure you want to upgrade the MCU?</string>
+	
+    <string name="dialog_update7">Error loading upgrade file</string>
+    <string name="dialog_update8">Please DO NOT power off or restart the car during the upgrade process!</string>
+    <string name="dialog_update9">Configuration saved. Please restart the monitor in 10 seconds!</string>
+	
+    <string name="eq_text1">Custom</string>
+    <string name="eq_text2">Pop</string>
+    <string name="eq_user">Custom</string>
+	
+    <string name="factory_yuyinkey2">Short press does nothing, long press opens navigation</string>
+    <string name="factory_yuyinkey3">Short press opens Voice Command, long press opens navigation</string>
+    <string name="factory_yuyinkey4">Short press opens navigation, long press does nothing</string>
+	
+    <string name="gs_phone_connected_bt_mess">Bluetooth connected</string>
+    <string name="gs_phone_unconnected_bt_mess">Bluetooth disconnected</string>
+	
+    <string name="set_text9">Navigation app selection</string>
+
+    <string name="string_is_this_logo">Are you sure you would like to use this as your boot logo?</string>
+    <string name="string_set_logo_over">The boot logo has been set successfully!</string>
+    <string name="text_logo_input_msg">Do you want to import the new Logo file?</string>
+    <string name="text_logo_input_non">No Logo file!</string>
+    <string name="text_logo_input_ok">Imported successfully!</string>
+	
+    <string name="string_sele_apk">Choose APK</string>
+   
+	<string name="text_10">System Version: %s</string>
+
+    <string name="update_reset_all">Are you sure you want to restore to factory settings?</string>
+</resources>
