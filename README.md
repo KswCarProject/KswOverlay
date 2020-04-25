@@ -15,6 +15,18 @@ JRE: [https://www.java.com/en/download/](https://www.java.com/en/download/)
 On the top right corner of this GitHub page, click on Clone or Download, and then click Download ZIP. Then extract that anywhere.
 
 
+# Theming Instructions
+If you never themed before, these are called overlays. They get "overlaid" on top of your existing application and when the app calls for these resources, 
+they take from the overlay first, then the base app.
+
+What you have to do is to take the resources from [https://github.com/KswCarProject/KswPLauncher/tree/147/resources/res](this) link and edit those pictures. 
+If you're editing in a folder named `drawable-hdpi-v4`, make sure that the folder in `resources/res` has that folder and named correctly, with the file. 
+
+Do not put in unedited files because bloating up the overlay is not ideal.
+
+Once you're done, follow these next steps to compile.
+
+
 # Windows Instructions
 To use this on Windows, make sure Java is installed and then you are able to make changes to the `resources/res/` folder for image and text changes.
 
