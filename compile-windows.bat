@@ -17,7 +17,7 @@ echo running this program.
 pause
 
 echo Compiling overlay...
-%cd%\.compiler\aapt.exe p -S %cd%\resources\res -M %cd%\resources\AndroidManifest.xml -I %cd%\.compiler\framework-res.apk -F kswoverlay.apk -f
+"%cd%\.compiler\aapt.exe" p -S "%cd%\resources\res" -M "%cd%\resources\AndroidManifest.xml" -I "%cd%\.compiler\framework-res.apk" -F kswoverlay.apk -f
 
 echo Signing overlay APK...
-%cd%\.compiler\apksigner.bat sign --ks %cd%\.compiler\overlaysig.jks --ks-pass pass:nicholaschum --key-pass pass:nicholaschum kswoverlay.apk
+"%cd%\.compiler\apksigner.bat" sign --ks "%cd%\.compiler\overlaysig.jks" --ks-pass pass:nicholaschum --key-pass pass:nicholaschum kswoverlay.apk
