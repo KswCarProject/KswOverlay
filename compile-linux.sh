@@ -11,7 +11,7 @@ echo " KswOverlay - written by Nicholas Chum (@nicholaschum) "
 echo =========================================================
 
 echo Compiling overlay...
-./.compiler/aapt p -S resources/res -M resources/AndroidManifest.xml -I .compiler/framework-res.apk -F kswoverlay.apk -f
+./.compiler/aapt p -S resources/res -M .compiler/manifest/QC/AndroidManifest.xml -I .compiler/framework-res.apk -F kswoverlay.apk -f
 
 echo Signing overlay APK...
 ./.compiler/apksigner sign --ks .compiler/overlaysig.jks --ks-pass pass:nicholaschum --key-pass pass:nicholaschum kswoverlay.apk
