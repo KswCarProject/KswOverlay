@@ -25,30 +25,30 @@ GOTO :continuepush
 
 :disableverity
 
-%cd%\.compiler\adb connect %_inputname%
-%cd%\.compiler\adb root
-%cd%\.compiler\adb disable-verity
-%cd%\.compiler\adb reboot
+"%cd%\.compiler\adb" connect %_inputname%
+"%cd%\.compiler\adb" root
+"%cd%\.compiler\adb" disable-verity
+"%cd%\.compiler\adb" reboot
 GOTO :continuepush
 
 :continuepush
 echo Alright, if the tablet is ready to be connected to, press any key
 pause
-%cd%\.compiler\adb connect %_inputname%
-%cd%\.compiler\adb root
-%cd%\.compiler\adb remount
-%cd%\.compiler\adb push %cd%\kswoverlay-px6.apk /storage/emulated/0
-%cd%\.compiler\adb shell mv /storage/emulated/0/kswoverlay-px6.apk /system/app
-%cd%\.compiler\adb shell chmod 644 /system/app/kswoverlay-px6.apk
-%cd%\.compiler\adb reboot
+"%cd%\.compiler\adb" connect %_inputname%
+"%cd%\.compiler\adb" root
+"%cd%\.compiler\adb" remount
+"%cd%\.compiler\adb" push %cd%\kswoverlay-px6.apk /storage/emulated/0
+"%cd%\.compiler\adb" shell mv /storage/emulated/0/kswoverlay-px6.apk /system/app
+"%cd%\.compiler\adb" shell chmod 644 /system/app/kswoverlay-px6.apk
+"%cd%\.compiler\adb" reboot
 GOTO :continueactivate
 
 
 :continueactivate
 echo Rebooted your tablet, now wait till it boots up again
 pause
-%cd%\.compiler\adb connect %_inputname%
-%cd%\.compiler\adb shell cmd overlay enable ksw.overlay
+"%cd%\.compiler\adb" connect %_inputname%
+"%cd%\.compiler\adb" shell cmd overlay enable ksw.overlay
 
 echo Done!
 pause
