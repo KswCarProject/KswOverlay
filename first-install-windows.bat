@@ -34,7 +34,7 @@ start "" /min "%CD%\.compiler\adb.exe" reboot
 timeout 1 >nul
 %cd%\.compiler\adb disconnect
 GOTO :continuepush
- 
+
 :continuepush
 echo Alright, if the tablet is ready to be connected to, press any key
 pause
