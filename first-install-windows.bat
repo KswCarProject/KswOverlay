@@ -17,41 +17,49 @@ pause
 
 echo I will now try to connect to your device...
 pause
-
 SET /P _inputname= Please enter your device's IP and port (e.g. 192.168.0.1:5555):
 SET /P _veritycheck= Is your device's verity disabled already? If you don't know, type N:
 IF "%_veritycheck%"=="N" GOTO :disableverity
 GOTO :continuepush
 
 :disableverity
-
+"%cd%\.compiler\adb" disconnect
 "%cd%\.compiler\adb" connect %_inputname%
+timeout 1 >nul
 "%cd%\.compiler\adb" root
+timeout 1 >nul
 "%cd%\.compiler\adb" disable-verity
-"%cd%\.compiler\adb" reboot
+timeout 1 >nul
+start "" /min "%CD%\.compiler\adb.exe" reboot
+timeout 1 >nul
+%cd%\.compiler\adb disconnect
 GOTO :continuepush
 
 :continuepush
 echo Alright, if the tablet is ready to be connected to, press any key
 pause
+"%cd%\.compiler\adb" disconnect
 "%cd%\.compiler\adb" connect %_inputname%
+timeout 1 >nul
 "%cd%\.compiler\adb" root
+timeout 1 >nul
 "%cd%\.compiler\adb" remount
+timeout 1 >nul
 "%cd%\.compiler\adb" push %cd%\kswoverlay.apk /storage/emulated/0
 "%cd%\.compiler\adb" shell mv /storage/emulated/0/kswoverlay.apk /system/app
 "%cd%\.compiler\adb" shell chmod 644 /system/app/kswoverlay.apk
-"%cd%\.compiler\adb" reboot
 GOTO :continueactivate
 
-
 :continueactivate
+"%cd%\.compiler\adb" connect %_inputname%
+timeout 1 >nul
+"%cd%\.compiler\adb" shell cmd overlay enable ksw.overlay
+timeout 1 >nul
+start "" /min "%CD%\.compiler\adb.exe" reboot
+timeout 1 >nul
+"%cd%\.compiler\adb" disconnect
+echo Done!
 echo Rebooted your tablet, now wait till it boots up again
 pause
-"%cd%\.compiler\adb" connect %_inputname%
-"%cd%\.compiler\adb" shell cmd overlay enable ksw.overlay
-
-echo Done!
-pause
-
 
 :end
