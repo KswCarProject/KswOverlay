@@ -48,9 +48,13 @@ timeout 1 >nul
 "%cd%\.compiler\adb" push %cd%\kswoverlay.apk /storage/emulated/0
 "%cd%\.compiler\adb" shell mv /storage/emulated/0/kswoverlay.apk /system/app
 "%cd%\.compiler\adb" shell chmod 644 /system/app/kswoverlay.apk
+timeout 1 >nul
+"%cd%\.compiler\adb" reboot
 GOTO :continueactivate
 
 :continueactivate
+echo Rebooted your tablet, now wait till it boots up again
+pause
 "%cd%\.compiler\adb" connect %_inputname%
 timeout 1 >nul
 "%cd%\.compiler\adb" shell cmd overlay enable ksw.overlay
