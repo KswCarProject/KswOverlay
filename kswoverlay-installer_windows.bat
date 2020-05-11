@@ -8,16 +8,17 @@ echo " | . \\__ \\ V  V /| |_| |\ V /  __/ |  | | (_| | |_| |";
 echo " |_|\_\___/ \_/\_/  \___/  \_/ \___|_|  |_|\__,_|\__, |";
 echo "                                                 |___/ ";                                                 
 echo " KswOverlay - written by Nicholas Chum (@nicholaschum) "
+echo "            - installer bat by Chris (@kri)          "
 echo =========================================================
 echo.
 echo This will set up your device to be able to easily install
 echo overlay APKs through the file browser or directly.
 echo Ensure you already have compiled your KswOverlay apk !
 echo.
-SET /p _IP= enter the ip adress of device (e.g. 192.168.0.1): 
+SET /p _IP= enter the IP address of the device (e.g. 192.168.0.1): 
 @echo connecting to device ....
 :initialconnect
-@echo If %_ip% can not be connected please check ip adress again.
+@echo If %_ip% cannot be connected please check IP address again
 timeout 2
 ping -n 1 %_ip% |find "TTL=" || goto :initialconnect
 echo Answer received.
@@ -36,9 +37,10 @@ echo " | . \\__ \\ V  V /| |_| |\ V /  __/ |  | | (_| | |_| |";
 echo " |_|\_\___/ \_/\_/  \___/  \_/ \___|_|  |_|\__,_|\__, |";
 echo "                                                 |___/ ";                                                 
 echo " KswOverlay - written by Nicholas Chum (@nicholaschum) "
+echo "            - installer bat by Chris (@kri)          "
 echo =========================================================
 echo.
-echo.  Connected IP Adress: %_inputname%
+echo.  Connected IP Address: %_inputname%
 echo.
 echo.  Enter "1" to Snapdragon 625 initial setup and enable
 echo.  Enter "2" to Snapdragon 625 update and enable
@@ -49,7 +51,7 @@ echo.  Enter "6" to disable KswOverlay
 echo.  Enter "7" to reboot device
 echo.
 set installer=
-set /P installer= please select a Number or press Enter to end script 
+set /P installer= Please select a Number or press Enter to end script 
 echo.
 IF "%installer%"=="1" GOTO :installKSW625
 IF "%installer%"=="2" GOTO :updateKSW625
@@ -63,14 +65,14 @@ IF "%installer%" not defined GOTO :end
 ::functions
 
 :pingloop
-echo Waiting until %_ip% is reachable again
+echo Waiting until %_ip% is reachable again...
 timeout 3 >nul
 ping -n 1 %_ip% |find "TTL=" || goto :pingloop
 echo Answer received.
 goto :eof
 
 :connecting
-echo Connecting to device
+echo Connecting to device...
 "%cd%\.compiler\adb" disconnect
 "%cd%\.compiler\adb" connect "%_inputname%"
 timeout 1 >nul
@@ -83,7 +85,7 @@ timeout 1 >nul
 goto :eof
 
 :disableverity
-echo performing disable-verity
+echo Performing disable-verity
 "%cd%\.compiler\adb" disable-verity
 timeout 1 >nul
 echo rebooting device
@@ -92,15 +94,15 @@ timeout 1 >nul
 goto :eof
 
 :enableKSW
-echo Activating KSW.Overlay ...
+echo Activating ksw.overlay ...
 timeout 1 >nul
 "%cd%\.compiler\adb" shell cmd overlay enable ksw.overlay
 echo.
-echo KSW.overlay enabled - you may need to reboot device to take effect
+echo ksw.overlay enabled - you may need to reboot device to take effect
 goto :eof
 
 :filesSD625
-echo pushing kswoverlay ...
+echo Pushing kswoverlay ...
 "%cd%\.compiler\adb" push "%cd%\kswoverlay.apk" /storage/emulated/0
 "%cd%\.compiler\adb" shell mv /storage/emulated/0/kswoverlay.apk /system/app
 "%cd%\.compiler\adb" shell chmod 644 /system/app/kswoverlay.apk
@@ -108,7 +110,7 @@ timeout 3 >nul
 goto :eof
 
 :filesPX6
-echo pushing kswoverlay ...
+echo Pushing kswoverlay ...
 "%cd%\.compiler\adb" push "%cd%\kswoverlay-px6.apk" /storage/emulated/0
 "%cd%\.compiler\adb" shell mv /storage/emulated/0/kswoverlay-px6.apk /system/app
 "%cd%\.compiler\adb" shell chmod 644 /system/app/kswoverlay-px6.apk
@@ -124,12 +126,12 @@ call :disableverity
 call :pingloop
 call :connecting
 call :filesSD625
-echo rebooting device
+echo Rebooting device...
 start "" /min "%CD%\.compiler\adb.exe" reboot
 call :pingloop
 call :connecting
 call :enableKSW
-echo rebooting device
+echo Rebooting device...
 start "" /min "%CD%\.compiler\adb.exe" reboot
 pause
 goto :menu
@@ -139,7 +141,7 @@ call :pingloop
 call :connecting
 call :filesSD625
 call :enableKSW
-echo rebooting device
+echo Rebooting device...
 start "" /min "%CD%\.compiler\adb.exe" reboot
 pause
 goto :menu
@@ -151,12 +153,12 @@ call :disableverity
 call :pingloop
 call :connecting
 call :filesPX6
-echo rebooting device
+echo Rebooting device...
 start "" /min "%CD%\.compiler\adb.exe" reboot
 call :pingloop
 call :connecting
 call :enableKSW
-echo rebooting device
+echo Rebooting device...
 start "" /min "%CD%\.compiler\adb.exe" reboot
 pause
 goto :menu
@@ -166,7 +168,7 @@ call :pingloop
 call :connecting
 call :filesPX6
 call :enableKSW
-echo rebooting device
+echo Rebooting device...
 start "" /min "%CD%\.compiler\adb.exe" reboot
 pause
 goto :menu
@@ -179,15 +181,15 @@ goto :menu
 
 :disableKSW
 call :connecting
-echo disabling overlay...
+echo Disabling overlay...
 "%cd%\.compiler\adb" shell cmd overlay disable ksw.overlay
 echo.
-echo KSW.overlay disabled - you may need to reboot device to take effect
+echo ksw.overlay disabled - you may need to reboot device to take effect
 pause
 Goto :menu
 
 :rebooting
-echo Rebooting device ...
+echo Rebooting device...
 start "" /min "%CD%\.compiler\adb.exe" reboot
 echo Rebooting your tablet, now wait till it boots up again
 pause
