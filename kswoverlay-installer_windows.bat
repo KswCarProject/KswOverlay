@@ -8,7 +8,7 @@ echo " | . \\__ \\ V  V /| |_| |\ V /  __/ |  | | (_| | |_| |";
 echo " |_|\_\___/ \_/\_/  \___/  \_/ \___|_|  |_|\__,_|\__, |";
 echo "                                                 |___/ ";                                                 
 echo " KswOverlay - written by Nicholas Chum (@nicholaschum) "
-echo "            - installer bat by Chris (@kri)          "
+echo "            - installer bat by Chri (@kri)          "
 echo =========================================================
 echo.
 echo This will set up your device to be able to easily install
