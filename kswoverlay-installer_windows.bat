@@ -6,9 +6,9 @@ echo " | |/ /_____      __/ _ \__   _____ _ __| | __ _ _   _ ";
 echo " | ' // __\ \ /\ / / | | \ \ / / _ \ '__| |/ _\ | | | |";
 echo " | . \\__ \\ V  V /| |_| |\ V /  __/ |  | | (_| | |_| |";
 echo " |_|\_\___/ \_/\_/  \___/  \_/ \___|_|  |_|\__,_|\__, |";
-echo "                                                 |___/ ";                                                 
+echo "                                                 |___/ ";
 echo " KswOverlay - written by Nicholas Chum (@nicholaschum) "
-echo "            - installer bat by Chri (@kri)          "
+echo "            - installer bat by Chri (@kri)           "
 echo =========================================================
 echo.
 echo This will set up your device to be able to easily install
@@ -35,23 +35,23 @@ echo " | |/ /_____      __/ _ \__   _____ _ __| | __ _ _   _ ";
 echo " | ' // __\ \ /\ / / | | \ \ / / _ \ '__| |/ _\ | | | |";
 echo " | . \\__ \\ V  V /| |_| |\ V /  __/ |  | | (_| | |_| |";
 echo " |_|\_\___/ \_/\_/  \___/  \_/ \___|_|  |_|\__,_|\__, |";
-echo "                                                 |___/ ";                                                 
+echo "                                                 |___/ ";
 echo " KswOverlay - written by Nicholas Chum (@nicholaschum) "
-echo "            - installer bat by Chris (@kri)          "
+echo "            - installer bat by Chri (@kri)           "
 echo =========================================================
 echo.
 echo.  Connected IP Address: %_inputname%
 echo.
-echo.  Enter "1" to Snapdragon 625 initial setup and enable
-echo.  Enter "2" to Snapdragon 625 update and enable
-echo.  Enter "3" to PX6 initial setup and enable
-echo.  Enter "4" to PX6 update and enable
-echo.  Enter "5" to enable KswOverlay
-echo.  Enter "6" to disable KswOverlay
-echo.  Enter "7" to reboot device
+echo.  Press "1" to install and enable on Snapdragon 625
+echo.  Press "2" to update and enable Snapdragon 625
+echo.  Press "3" to install and enable on PX6
+echo.  Press "4" to update and enable PX6
+echo.  Press "5" to enable KswOverlay
+echo.  Press "6" to disable KswOverlay
+echo.  Press "7" to reboot device
 echo.
 set installer=
-set /P installer= Please select a Number or press Enter to end script 
+set /P installer= Please select a number or press enter to end the script 
 echo.
 IF "%installer%"=="1" GOTO :installKSW625
 IF "%installer%"=="2" GOTO :updateKSW625
