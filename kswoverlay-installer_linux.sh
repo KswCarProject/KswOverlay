@@ -35,7 +35,7 @@ menu(){
 	echo  [6] Disable KswOverlay
 	echo  [7] Reboot device
 	echo  [8] Reveal factory passcode
-	echo  [9] Copy factory config to this computer
+	echo  [9] Enable safe media bypass \(100% volume after reboot\)
 	echo  [0] Exit
 	echo  " "
 
@@ -53,7 +53,7 @@ menu_options(){
 		6) clear; disableKSW ;;
 		7) clear; rebootdevice ;;
 		8) clear; get_passcode ;;
-		9) clear; get_factoryconfig;;
+		9) clear; enable_safe_media_bypass;;
 		0) exit 0;;
 		*) echo -e "${RED}Not sure what you mean! Try again.${STD}" && sleep 1 && menu
 	esac
@@ -201,6 +201,50 @@ get_passcode() {
 get_factoryconfig() {
 	echo Downloading factory config from device...
 	.compiler/adb pull /mnt/vendor/persist/OEM/factory_config.xml
+	pause
+}
+
+install_buildprop() {
+	.compiler/adb push build.prop /storage/emulated/0/ 
+	.compiler/adb shell mv /storage/emulated/0/build.prop /system/build.prop
+	.compiler/adb shell chmod 644 /system/build.prop
+}
+
+enable_safe_media_bypass() {
+	networkcheck
+	connecting
+	disableverity
+	rebootdevice
+	networkcheck
+	connecting
+	.compiler/adb pull /system/build.prop > /dev/null
+	cp build.prop build.prop.backup > /dev/null
+
+	CHECKEXISTS=$(grep "audio.safemedia.bypass" build.prop)
+
+	if [ -z "$CHECKEXISTS" ]
+	then
+		printf "\n\n# Safe Media Bypass for External USB Sound Cards\naudio.safemedia.bypass=true\n" >> build.prop
+		echo -e "${YELLOW}\n"
+		diff -y build.prop.backup build.prop
+		echo -e "${STD}\n"
+		echo -e "This will allow you to keep 100% volume setting after reboot with an external audio device:\n"
+		echo -e "Above are the OLD and NEW versions side by side. There should be 2 new lines at the end. Changes are indicated by > preceeding the lines:\n"
+
+		while true; do
+			echo -e "${RED}***** WARNING ***** ***** WARNING ***** ***** WARNING ***** ***** WARNING *****"
+			echo -e "This will attempt to automatically patch your build.prop file but has the potential to brick your device."
+			echo -e "You must verify the changes displayed above. No responsibility can be taken for any issues caused. \n${STD}"
+		    read -p "Does the above look correct and are you ready to push the updated file back to your device? [y/N]" yn
+		    case $yn in
+		        [Yy]* ) install_buildprop; break;;
+		        [Nn]* ) exit;;
+		        * ) echo "Please type y or n.";;
+		    esac
+		done
+	else
+		echo -e "${RED}ERROR: audio.safemedia.bypass already exists in config. Please check the file manually. Aborting${STD}"
+	fi
 	pause
 }
 
