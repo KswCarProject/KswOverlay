@@ -1,6 +1,5 @@
 @echo off
 REM Copyright (C) 2016 The Android Open Source Project
-REM Copyright (C) 2020 Nicholas Chum
 REM
 REM Licensed under the Apache License, Version 2.0 (the "License");
 REM you may not use this file except in compliance with the License.
@@ -23,12 +22,34 @@ REM Set up prog to be the path of this script, including following symlinks,
 REM and set up progdir to be the fully-qualified pathname of its directory.
 set prog=%~f0
 
-rem Check we have a valid Java.exe in the path.
-set java_exe=
-if exist    "%cd%\.compiler\lib\find_java.bat" call    "%cd%\.compiler\lib\find_java.bat"
-if exist "%cd%\.compiler\lib\find_java.bat" call "%cd%\.compiler\lib\find_java.bat"
-if not defined java_exe goto :EOF
+@rem Find java.exe
+if defined JAVA_HOME goto findJavaFromJavaHome
 
+set JAVA_EXE=java.exe
+%JAVA_EXE% -version >NUL 2>&1
+if "%ERRORLEVEL%" == "0" goto init
+
+echo.
+echo ERROR: JAVA_HOME is not set and no 'java' command could be found in your PATH.
+echo.
+echo Please set the JAVA_HOME variable in your environment to match the
+echo location of your Java installation.
+exit /b 1
+
+:findJavaFromJavaHome
+set JAVA_HOME=%JAVA_HOME:"=%
+set JAVA_EXE=%JAVA_HOME%/bin/java.exe
+
+if exist "%JAVA_EXE%" goto init
+
+echo.
+echo ERROR: JAVA_HOME is set to an invalid directory: %JAVA_HOME%
+echo.
+echo Please set the JAVA_HOME variable in your environment to match the
+echo location of your Java installation.
+exit /b 1
+
+:init
 set jarfile=apksigner.jar
 set "frameworkdir=%~dp0"
 rem frameworkdir must not end with a dir sep.
